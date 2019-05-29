@@ -35,11 +35,7 @@ config.tradingAdvisor = {
   method: 'MACD',
   candleSize: 1,
   historySize: 3,
-  adapter: 'sqlite',
-  talib: {
-    enabled: false,
-    version: '1.0.2'
-  }
+  adapter: 'sqlite'
 }
 
 // Exponential Moving Averages settings:
@@ -365,6 +361,14 @@ config.slack = {
   channel: '' // #tradebot
 }
 
+config.ifttt = {
+  enabled: false,
+  eventName: 'gekko',
+  makerKey: '',
+  muteSoft: true,
+  sendMessageOnStart: true
+}
+
 config.candleWriter = {
   enabled: false
 }
@@ -385,6 +389,8 @@ config.sqlite = {
 
   dataDirectory: 'history',
   version: 0.1,
+
+  journalMode: require('./web/isWindows.js') ? 'DELETE' : 'WAL',
 
   dependencies: []
 }
@@ -418,7 +424,7 @@ config.mongodb = {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Note that these settings are only used in backtesting mode, see here:
-// @link: https://github.com/askmike/gekko/blob/stable/docs/Backtesting.md
+// @link: https://gekko.wizb.it/docs/commandline/backtesting.html
 
 config.backtest = {
   daterange: 'scan',
@@ -432,7 +438,7 @@ config.backtest = {
 config.importer = {
   daterange: {
     // NOTE: these dates are in UTC
-    from: "2016-01-01 00:00:00"
+    from: "2017-11-01 00:00:00"
   }
 }
 
